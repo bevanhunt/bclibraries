@@ -2,6 +2,9 @@ Meteor.startup ->
   @Libraries = new Meteor.Collection('libraries')
   Meteor.subscribe('libraries')
 
+  @Uniques = new Meteor.Collection('uniques')
+  Meteor.subscribe('uniques')
+
 Template.search_city.rendered = ->
   AutoCompletion.init("input#searchBox")
 
@@ -9,10 +12,10 @@ Template.search_city.events
   'keyup input#searchBox': ->
     AutoCompletion.autocomplete
       element: 'input#searchBox'
-      collection: Libraries
+      collection: Uniques
       field: 'city'
-      limit: 1
-      sort: { name: 1 }
+      limit: 0
+      sort: { city: 1 }
   'click #search_button': ->
     input_value = $("input#searchBox").val()
     libraries = Libraries.find({city: { $regex : input_value, $options:"i" } })

@@ -11,7 +11,7 @@ Template.search_city.events
       element: 'input#searchBox'
       collection: Libraries
       field: 'city'
-      limit: 0
+      limit: 1
       sort: { name: 1 }
   'click #search_button': ->
     input_value = $("input#searchBox").val()

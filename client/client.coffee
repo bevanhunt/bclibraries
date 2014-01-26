@@ -1,9 +1,18 @@
-Meteor.startup ->
-  @Libraries = new Meteor.Collection('libraries')
-  Meteor.subscribe('libraries')
+createMarkers = -> 
+  console.log "hi"
+  Libraries.find().forEach (library) ->
+    console.log library
+    lat = library.lat
+    lng = library.lng
+    popup = "#{library.name}<br>#{library.address}<br>#{library.city}<br>#{library.postcode}"
+    L.marker([lat,lng]).addTo(window.map).bindPopup(popup)
+  window.map.spin(false)
 
-  @Uniques = new Meteor.Collection('uniques')
-  Meteor.subscribe('uniques')
+@Libraries = new Meteor.Collection('libraries')
+Meteor.subscribe('libraries', createMarkers)
+
+@Uniques = new Meteor.Collection('uniques')
+Meteor.subscribe('uniques')
 
 Template.search_city.rendered = ->
   AutoCompletion.init("input#searchBox")
@@ -76,17 +85,6 @@ Template.map.rendered = ->
     <a href="http://www2.gov.bc.ca/">Province of British Columbia</a> under the 
     <a href="http://www.data.gov.bc.ca/dbc/admin/terms.page">Open Government License for Government of BC Information v.BC1.0</a>'
   .addTo(window.map)
-  
-  # add popup to each marker
-  onEachFeature = (feature, layer) ->
-    if feature.properties
-      name = feature.properties["Name"]
-      description = feature.properties["Description"]
-      matches = description.match(/Address:\s(.*)\sCity:\s(.*)\sPostCode:\s(.*)/)
-      popup = "#{name}<br>#{matches[1]}<br>#{matches[2]}<br>#{matches[3]}"
-      layer.bindPopup(popup)
-  
-  # add geojson to map
-  L.geoJson window.geojson,
-    onEachFeature: onEachFeature
-  .addTo(window.map)
+
+  # loading spinner
+  window.map.spin(true)

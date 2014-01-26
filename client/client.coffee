@@ -1,11 +1,11 @@
 createMarkers = -> 
-  console.log "hi"
   Libraries.find().forEach (library) ->
     console.log library
     lat = library.lat
     lng = library.lng
     popup = "#{library.name}<br>#{library.address}<br>#{library.city}<br>#{library.postcode}"
     L.marker([lat,lng]).addTo(window.map).bindPopup(popup)
+  # turn off spinner - loaded
   window.map.spin(false)
 
 @Libraries = new Meteor.Collection('libraries')

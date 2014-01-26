@@ -1,10 +1,12 @@
 createMarkers = -> 
+  markers = new L.MarkerClusterGroup()
   Libraries.find().forEach (library) ->
     console.log library
     lat = library.lat
     lng = library.lng
     popup = "#{library.name}<br>#{library.address}<br>#{library.city}<br>#{library.postcode}"
-    L.marker([lat,lng]).addTo(window.map).bindPopup(popup)
+    markers.addLayer(new L.marker([lat,lng]).bindPopup(popup))
+  window.map.addLayer(markers)
   # turn off spinner - loaded
   window.map.spin(false)
 
@@ -44,11 +46,13 @@ Template.search_city.events
     for key, val of layers
       window.map.removeLayer(val) if val._latlng
     $("#searchBox").val('')
+    markers = new L.MarkerClusterGroup()
     Libraries.find().forEach (library) ->
       lat = library.lat
       lng = library.lng
       popup = "#{library.name}<br>#{library.address}<br>#{library.city}<br>#{library.postcode}"
-      L.marker([lat,lng]).addTo(window.map).bindPopup(popup)
+      markers.addLayer(new L.marker([lat,lng]).bindPopup(popup))
+    window.map.addLayer(markers)
 
 # resize the layout
 window.resize = (t) ->

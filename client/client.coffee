@@ -3,7 +3,6 @@ window.markers = []
 createMarkers = -> 
   markers = new L.MarkerClusterGroup()
   Libraries.find().forEach (library) ->
-    console.log library
     lat = library.lat
     lng = library.lng
     popup = "#{library.name}<br>#{library.address}<br>#{library.city}<br>#{library.postcode}"

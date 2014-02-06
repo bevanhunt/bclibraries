@@ -8,7 +8,8 @@
       "bootstrap-3": {},
       "mongodb-server-aggregation": {},
       "leaflet-spin": {},
-      "leaflet-markercluster": {}
+      "leaflet-markercluster": {},
+      "leaflet-locatecontrol": {}
     },
     "packages": {
       "leaflet": {
@@ -45,6 +46,11 @@
         "git": "https://github.com/bevanhunt/meteor-leaflet-markercluster.git",
         "tag": "v0.0.1",
         "commit": "c5050c3d8f2a80fcf910732a67394b14df1bc07f"
+      },
+      "leaflet-locatecontrol": {
+        "git": "https://github.com/bevanhunt/meteor-leaflet-locatecontrol.git",
+        "tag": "v0.0.2",
+        "commit": "1f9d79445e7b703f12883bbe159cf9560f6ef3db"
       },
       "jquery-ui": {
         "git": "https://github.com/TimHeckel/meteor-jquery-ui.git",

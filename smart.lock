@@ -49,8 +49,8 @@
       },
       "leaflet-locatecontrol": {
         "git": "https://github.com/bevanhunt/meteor-leaflet-locatecontrol.git",
-        "tag": "v0.0.2",
-        "commit": "1f9d79445e7b703f12883bbe159cf9560f6ef3db"
+        "tag": "v0.0.4",
+        "commit": "290ce3e14814a3dc679054805ed6bbaa94a1fcb6"
       },
       "jquery-ui": {
         "git": "https://github.com/TimHeckel/meteor-jquery-ui.git",
